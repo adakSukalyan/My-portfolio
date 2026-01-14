@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sukalyan - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Custom styles */
+      body {
+        font-family: "Inter", sans-serif;
+        scroll-behavior: smooth;
+        /* Hide the default cursor */
+        cursor: none;
+      }
+      .hero-bg {
+        /* Animated Gradient Background */
+        background: linear-gradient(-45deg, #111827, #1f2937, #374151, #3b82f6);
+        background-size: 400% 400%;
+        animation: gradient-animation 15s ease infinite;
+      }
+
+      @keyframes gradient-animation {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .section-bg {
+        background-color: #1f2937;
+      }
+      .card-bg {
+        background-color: #374151;
+      }
+      .nav-link {
+        transition: color 0.3s ease;
+      }
+      .nav-link:hover {
+        color: #3b82f6;
+      }
+      .project-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 0 20px rgba(59, 130, 246, 0.5);
+      }
+
+      /* New Skill Card Styles */
+      .skill-card {
+        background-color: #2d3748;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .skill-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+      }
+      .skill-card img {
+        width: 4rem;
+        height: 4rem;
+        transition: transform 0.3s ease;
+      }
+      .skill-card:hover img {
+        transform: scale(1.1);
+      }
+
+      /* Custom Cursor Styles */
+      .cursor-dot,
+      .cursor-outline {
+        pointer-events: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        z-index: 9999;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+      }
+
+      .cursor-dot {
+        width: 8px;
+        height: 8px;
+        background-color: #3b82f6;
+      }
+
+      .cursor-outline {
+        width: 40px;
+        height: 40px;
+        border: 2px solid #3b82f6;
+        transition: width 0.2s ease-out, height 0.2s ease-out,
+          border-width 0.2s ease-out;
+      }
+
+      body:hover .cursor-dot,
+      body:hover .cursor-outline {
+        opacity: 1;
+      }
+
+      /* Cursor hover effect */
+      .cursor-outline.hover {
+        width: 60px;
+        height: 60px;
+        border-width: 3px;
+      }
+
+      /* Typing animation cursor */
+      #typing-text::after {
+        content: "|";
+        animation: blink 1s infinite;
+        color: #3b82f6;
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-gray-200">
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Header -->
+    <header
+      id="header"
+      class="bg-gray-900/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50"
+    >
+      <div
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a href="#" class="text-2xl font-bold text-white">My Portfolio</a>
+        <nav class="hidden md:flex space-x-8">
+          <a href="#about" class="nav-link text-gray-300">About</a>
+          <a href="#projects" class="nav-link text-gray-300">Projects</a>
+          <a href="#skills" class="nav-link text-gray-300">Skills</a>
+          <a href="#contact" class="nav-link text-gray-300">Contact</a>
+        </nav>
+        <button
+          id="mobile-menu-button"
+          class="md:hidden text-gray-300 focus:outline-none"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            ></path>
+          </svg>
+        </button>
+      </div>
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+        <a href="#about" class="block py-2 nav-link text-gray-300">About</a>
+        <a href="#projects" class="block py-2 nav-link text-gray-300"
+          >Projects</a
+        >
+        <a href="#skills" class="block py-2 nav-link text-gray-300">Skills</a>
+        <a href="#contact" class="block py-2 nav-link text-gray-300">Contact</a>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section id="about" class="hero-bg min-h-screen flex items-center pt-20">
+        <div class="container mx-auto px-6 text-center">
+          <img
+            src="https://placehold.co/150x150/3B82F6/FFFFFF?text=S"
+            alt="Sukalyan"
+            class="w-40 h-40 mx-auto rounded-full mb-6 border-4 border-blue-500 shadow-lg"
+          />
+          <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">
+            Hi, I'm <span id="typing-text"></span>
+          </h1>
+          <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+            Computer Science student specializing in AIML. My focus is on
+            creating future-ready, AI-powered solutions. I build technology to
+            enhance the human experience.
+          </p>
+          <a
+            href="#contact"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition duration-300"
+            >Get In Touch</a
+          >
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="section-bg py-20">
+        <div class="container mx-auto px-6">
+          <h2
+            class="text-3xl md:text-4xl font-bold text-center text-white mb-12"
+          >
+            My Projects
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Project Card 1 -->
+            <div
+              class="project-card card-bg rounded-lg overflow-hidden shadow-lg"
+            >
+              <img
+                src="weather.png"
+                alt="Weather App"
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-white mb-2">
+                  Weather App
+                </h3>
+                <p class="text-gray-400 mb-4">
+                 A real-time weather application providing accurate forecasts and conditions using advanced APIs.
+                </p>
+                <a
+                  href="#"
+                  class="text-blue-400 hover:text-blue-300 font-semibold"
+                  >View Project &rarr;</a
+                >
+              </div>
+            </div>
+            <!-- Project Card 2 -->
+            <div
+              class="project-card card-bg rounded-lg overflow-hidden shadow-lg"
+            >
+              <img
+                src="mindwatch.png"
+                alt="MindWatch Project"
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-white mb-2">MindWatch</h3>
+                <p class="text-gray-400 mb-4">
+                  A smart mental wellness tracker for students, built to provide
+                  support and insights.
+                </p>
+                <a
+                  href="#"
+                  class="text-blue-400 hover:text-blue-300 font-semibold"
+                  >View Project &rarr;</a
+                >
+              </div>
+            </div>
+           
+            <!-- Project Card 3 -->
+            <div
+              class="project-card card-bg rounded-lg overflow-hidden shadow-lg"
+            >
+              <img
+                src="sorting-visualizer.png"
+                alt="sorting-visualizer"
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-white mb-2">
+                  Sorting Visualizer
+                </h3>
+                <p class="text-gray-400 mb-4">
+                  An interactive web application that visualizes various sorting algorithms like Bubble Sort and Quick Sort in real-time.
+                </p>
+                <a
+                  href="#"
+                  class="text-blue-400 hover:text-blue-300 font-semibold"
+                  >View Project &rarr;</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills Section -->
+      <section id="skills" class="hero-bg py-20">
+        <div class="container mx-auto px-6">
+          <h2
+            class="text-3xl md:text-4xl font-bold text-center text-white mb-12"
+          >
+            Skills & Technologies
+          </h2>
+          <div
+            class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 max-w-5xl mx-auto"
+          >
+            <!-- C -->
+            <div
+              class="skill-card rounded-lg p-6 flex flex-col items-center justify-center gap-4"
+            >
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/1/19/C_Logo.png"
+                alt="C Logo"
+              />
+              <span class="text-lg font-medium text-gray-300">C</span>
+            </div>
+            
+            <!-- Python -->
+            <div
+              class="skill-card rounded-lg p-6 flex flex-col items-center justify-center gap-4"
+            >
+              <img
+                src="https://images.icon-icons.com/2699/PNG/512/python_logo_icon_168886.png"
+                alt="Python Logo"
+              />
+              <span class="text-lg font-medium text-gray-300">Python</span>
+            </div>
+            <!-- Java -->
+            <div
+              class="skill-card rounded-lg p-6 flex flex-col items-center justify-center gap-4"
+            >
+              <img
+                src="https://images.icon-icons.com/2415/PNG/512/java_original_logo_icon_146458.png"
+                alt="Java Logo"
+              />
+              <span class="text-lg font-medium text-gray-300">Java</span>
+            </div>
+            <!-- HTML -->
+            <div
+              class="skill-card rounded-lg p-6 flex flex-col items-center justify-center gap-4"
+            >
+              <img
+                src="https://icon2.cleanpng.com/20180320/vgw/avew9415g.webp"
+                alt="HTML Logo"
+              />
+              <span class="text-lg font-medium text-gray-300">HTML</span>
+            </div>
+            <!-- CSS -->
+            <div
+              class="skill-card rounded-lg p-6 flex flex-col items-center justify-center gap-4"
+            >
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg"
+                alt="CSS Logo"
+              />
+              <span class="text-lg font-medium text-gray-300">CSS</span>
+            </div>
+            <!-- JavaScript -->
+            <div
+              class="skill-card rounded-lg p-6 flex flex-col items-center justify-center gap-4"
+            >
+              <img
+                src="https://static.vecteezy.com/system/resources/previews/027/127/463/non_2x/javascript-logo-javascript-icon-transparent-free-png.png"
+                alt="JavaScript Logo"
+              />
+              <span class="text-lg font-medium text-gray-300">JavaScript</span>
+            </div>
+             <!-- Node.js -->
+                    <div class="skill-card rounded-lg p-5 flex flex-col items-center justify-center gap-3">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js Logo">
+                        <span class="text-sm font-medium text-gray-300">Node.js</span>
+                    </div>
+            <!-- MySQL -->
+                    <div class="skill-card rounded-lg p-5 flex flex-col items-center justify-center gap-3">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL Logo">
+                        <span class="text-sm font-medium text-gray-300">MySQL</span>
+                    </div>
+            <!-- JSP -->
+                    <div class="skill-card rounded-lg p-5 flex flex-col items-center justify-center gap-3">
+                        <img src="https://www.vectorlogo.zone/logos/java/java-icon.svg" alt="JSP Logo">
+                        <span class="text-sm font-medium text-gray-300">JSP</span>
+                    </div>
+             <!-- Spring Boot -->
+                    <div class="skill-card rounded-lg p-5 flex flex-col items-center justify-center gap-3">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot Logo">
+                        <span class="text-sm font-medium text-gray-300">Spring Boot</span>
+                    </div>
+             <!-- REST API -->
+                    <div class="skill-card rounded-lg p-5 flex flex-col items-center justify-center gap-3">
+                        <img src="https://bookstack.cscms.me/uploads/images/gallery/2024-01/badges-rest-api-express-stage1.png" alt="REST API Logo">
+                        <span class="text-sm font-medium text-gray-300">REST API</span>
+                    </div>
+            
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="section-bg py-20">
+        <div class="container mx-auto px-6 text-center">
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+            Let's Connect
+          </h2>
+          <p class="text-lg text-gray-300 max-w-2xl mx-auto mb-8">
+            I'm currently looking for new opportunities. If you have a project
+            in mind or just want to say hi, feel free to reach out!
+          </p>
+          <a
+            href="mailto:adaksukalyan2304@gmail.com"
+            class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 text-lg mb-8"
+            >adaksukalyan2304@gmail.com</a
+          >
+
+          <!-- Social Media Links -->
+          <div class="flex justify-center space-x-6">
+            <a
+              href="https://github.com/adakSukalyan"
+              target="_blank"
+              class="text-gray-400 hover:text-blue-500 transition-colors duration-300"
+              aria-label="GitHub"
+            >
+              <svg
+                class="w-8 h-8"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.942.359.308.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/sukalyan-adak-a4216b270/"
+              target="_blank"
+              class="text-gray-400 hover:text-blue-500 transition-colors duration-300"
+              aria-label="LinkedIn"
+            >
+              <svg
+                class="w-8 h-8"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.instagram.com/su_kalyan_/"
+              target="_blank"
+              class="text-gray-400 hover:text-blue-500 transition-colors duration-300"
+              aria-label="Instagram"
+            >
+              <svg
+                class="w-8 h-8"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.644-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.947s-.014-3.667-.072-4.947c-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.facebook.com/sukalyan.adak"
+              target="_blank"
+              class="text-gray-400 hover:text-blue-500 transition-colors duration-300"
+              aria-label="Facebook"
+            >
+              <svg
+                class="w-8 h-8"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  d="M22 12c0-5.523-4.477-10-10-10s-10 4.477-10 10c0 5.523 4.477 10 10 10s10-4.477 10-10zm-10 8c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8zm-1-5h-2v-3h2v-1.5c0-2.219 1.353-3.5 3.223-3.5.922 0 1.777.068 1.777.068v2.688h-1.597c-1.08 0-1.288.513-1.288 1.262v1.482h2.82l-.367 3h-2.453v7h-3v-7z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="hero-bg py-6">
+      <div class="container mx-auto px-6 text-center text-gray-400">
+        <p>&copy; 2024 Sukalyan. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // JavaScript for mobile menu toggle
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      // Close mobile menu when a link is clicked
+      const navLinks = document.querySelectorAll("#mobile-menu a");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+        });
+      });
+
+      // Add shadow to header on scroll
+      const header = document.getElementById("header");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          header.classList.add("shadow-lg");
+        } else {
+          header.classList.remove("shadow-lg");
+        }
+      });
+
+      // Custom Cursor Logic
+      const cursorDot = document.querySelector(".cursor-dot");
+      const cursorOutline = document.querySelector(".cursor-outline");
+
+      window.addEventListener("mousemove", (e) => {
+        const posX = e.clientX;
+        const posY = e.clientY;
+
+        cursorDot.style.left = `${posX}px`;
+        cursorDot.style.top = `${posY}px`;
+
+        cursorOutline.animate(
+          {
+            left: `${posX}px`,
+            top: `${posY}px`,
+          },
+          { duration: 500, fill: "forwards" }
+        );
+      });
+
+      const interactiveElements = document.querySelectorAll(
+        "a, button, .project-card, .skill-card"
+      );
+      interactiveElements.forEach((el) => {
+        el.addEventListener("mouseover", () => {
+          cursorOutline.classList.add("hover");
+        });
+        el.addEventListener("mouseleave", () => {
+          cursorOutline.classList.remove("hover");
+        });
+      });
+
+      // Typing Animation Logic
+      const typingText = document.getElementById("typing-text");
+      const textToType = "Sukalyan";
+      let charIndex = 0;
+      let isDeleting = false;
+
+      function type() {
+        const currentText = textToType;
+        let displayedText = "";
+
+        if (isDeleting) {
+          displayedText = currentText.substring(0, charIndex - 1);
+          charIndex--;
+        } else {
+          displayedText = currentText.substring(0, charIndex + 1);
+          charIndex++;
+        }
+
+        typingText.textContent = displayedText;
+
+        // Switch between typing and deleting
+        if (!isDeleting && charIndex === currentText.length) {
+          // Pause at the end
+          setTimeout(() => {
+            isDeleting = true;
+          }, 2000);
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+        }
+
+        const typingSpeed = isDeleting ? 100 : 200;
+        setTimeout(type, typingSpeed);
+      }
+
+      // Start the animation on page load
+      document.addEventListener("DOMContentLoaded", () => {
+        setTimeout(type, 500);
+      });
+    </script>
+  </body>
+</html>
